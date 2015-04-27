@@ -1,0 +1,64 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block title %}
+    acteur {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Modifier genre
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i> Tables
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        {# form(formgenre) }#}
+                        {{ form_start(formgenre) }}
+
+                        {{ form_label(formgenre.type,"entrer genre") }}
+                        {{ form_widget(formgenre.type, {"attr":{"class":"form-control" }} ) }}
+
+
+                        {{ form_label(formgenre.description,"entrer text") }}
+                        {{ form_widget(formgenre.description, {"attr":{"class":"form-control","rows" : "3" }} ) }}
+
+
+
+
+                        {{ form_widget(formgenre.modifier, {"attr":{"class":"btn btn-primary"}} ) }}
+
+
+                        {{ form_end(formgenre) }}
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+{% endblock %}

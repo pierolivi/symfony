@@ -1,0 +1,102 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block title %}
+    acteur {{ parent() }}
+{% endblock %}
+
+{% block central %}
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Tous les Films
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_admin") }}">Admin</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i><a href="{{ path("troiswa_back_admin_acteur") }}"> Tous les acteurs</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i><a href="{{ path("troiswa_back_creer_film") }}"> Creer film</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                 {% for message in app.session.flashbag.get("success_genre") %}
+                    <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Film's Table</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Titre</th>
+                                        <th>description</th>
+                                    <th>date de realisation</th>
+                                        <th>note</th>
+
+                                         <th>image</th>
+                                        <th>genre</th>
+                                         <th>actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {#{ dump(films) }#}
+                                {% for value in films %}
+                                    <tr>
+                                        <td>{{ value.id }}</td>
+                                        <td>{{ value.titre }}</td>
+                                        <td>{{ value.description}}</td>
+                                        <td>{{ value.datederealisation|date("y/m/d")}}</td>
+
+                                        <td>{{ value.note }}</td>
+
+                                        <td><img src="{{ asset(value.displayImageFilms) }}" width="200px"  class="img-thumbnail"></td>
+                                        <td>{{ value.liaisonGenre.type }}</td>
+                                        <td>
+                                            <a href="{{ path("troiswa_back_info_unfilm", {'id' : value.id} ) }}" class="btn btn-success">voir</a>
+                                            <a href="#" class="btn btn-info">modif</a>
+                                            <a href="#" class="btn btn-danger">supp</a>
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+
+                    </div>
+
+
+
+                <!-- /.row -->
+
+
+                    <div class="col-lg-6">
+                        <h2>Bootstrap Docs</h2>
+                        <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+{% endblock %}

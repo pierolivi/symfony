@@ -1,0 +1,107 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block title %}
+    acteur {{ parent() }}
+{% endblock %}
+
+{% block central %}
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Tous les acteurs
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_admin") }}">Admin</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i> Tous les acteurs
+                            </li>
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_ajouter_acteur") }}">Ajouter Acteur</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                    {% for message in app.session.flashbag.get("success_genre") %}
+                     <p class="alert alert-success">{{ message }}</p>
+                    {% endfor %}
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Actor's Table</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Prenom</th>
+                                        <th>nom</th>
+                                    <th>date de naissance</th>
+                                        <th>sexe</th>
+                                        <th>biographie</th>
+                                        <th>ville</th>
+                                         <th>image</th>
+                                        <th>actions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {#{ dump(acteurs) }#}
+                                {% for value in acteurs %}
+                                    <tr>
+                                        <td>{{ value.id }}</td>
+                                        <td>{{ value.prenom|capitalize }}</td>
+                                        <td>{{ value.nom|capitalize}}</td>
+                                        <td>{{ value.datenaissance|date("y/m/d")}}</td>
+                                        {% if value.sexe == 1 %}
+                                        <td>homme</td>
+                                        {% elseif value.sexe == 0 %}
+                                        <td>femme</td>
+                                        {% endif %}
+                                        <td>{{ value.biographie }}</td>
+                                        <td>{{ value.ville }}</td>
+
+                                        <td><img src="{{ asset(value.displayImageActeurs) }}" width="200px"  class="img-thumbnail"></td>
+                                        <td>
+                                            <a href="{{ path("troiswa_back_info_acteur", {'id' : value.id} ) }}" class="btn btn-success">voir</a>
+                                            <a href="{{ path("troiswa_back_modifier_acteur", {'id' : value.id} ) }}" class="btn btn-info">modif</a>
+                                            <a href="{{ path("troiswa_back_supprimer_acteur", {'id' : value.id} ) }}" class="btn btn-danger">supp</a>
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                            {{ knp_pagination_render(acteurs) }}
+                        </div>
+                    </div>
+
+                    </div>
+
+
+
+                <!-- /.row -->
+
+
+                    <div class="col-lg-6">
+                        <h2>Bootstrap Docs</h2>
+                        <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+{% endblock %}

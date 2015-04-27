@@ -1,0 +1,91 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+
+{% block title %}
+    acteur {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Creer film
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i> Tables
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        {#{  form(formfilm) }#}
+
+                        {{ form_start(formfilm,{"attr":{"novalidate":"novalidate" }} ) }}
+
+                       <div class="form-group">
+                        {{ form_label(formfilm.titre,"entrer titre") }}
+                         {{ form_errors(formfilm.titre) }}
+                        {{ form_widget(formfilm.titre, {"attr":{"class":"form-control" }} ) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(formfilm.description,"entrer descripion") }}
+                         {{ form_errors(formfilm.description) }}
+                        {{ form_widget(formfilm.description, {"attr":{"class":"form-control" }} ) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(formfilm.datederealisation,"entrer date") }}
+
+                        {{ form_widget(formfilm.datederealisation, {"attr":{"class":"form-control" }} ) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(formfilm.note,"entrer note") }}
+                         {{ form_errors(formfilm.note) }}
+                        {{ form_widget(formfilm.note, {"attr":{"class":"form-control" }} ) }}
+                    </div>
+                    <div class="form-group">
+
+                         {{ form_errors(formfilm.fichier) }}
+                        {{ form_widget(formfilm.fichier, {"attr":{"class":"form-control" }} ) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(formfilm.liaisonGenre,"entrer genre") }}
+
+                        {{ form_widget(formfilm.liaisonGenre, {"attr":{"class":"form-control" }} ) }}
+                    </div>
+                        {#{ form_errors(formfilm.description) }}
+                        {#{ form_widget(formfilm.description, {"attr":{"class":"form-control","rows" : "3" }} ) } #}
+
+
+
+
+                        {{ form_widget(formfilm.ajouter, {"attr":{"class":"btn btn-primary"}} ) }}
+
+
+                        {{ form_end(formfilm) }}
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+{% endblock %}
